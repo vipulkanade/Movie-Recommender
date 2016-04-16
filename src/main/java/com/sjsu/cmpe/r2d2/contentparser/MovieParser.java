@@ -44,10 +44,27 @@ public class MovieParser {
         parser.close();
     }
 
+    public static void processForUser() throws IOException{
+        CSVFormat outputFormat = CSVFormat.DEFAULT.withDelimiter(',').withRecordSeparator(NL);
+        FileWriter fileWriter = new FileWriter(outputCSV, true);
+
+        CSVPrinter printer = new CSVPrinter(fileWriter,outputFormat);
+
+        int[] ints = {1, 2, 3, 4, 6, 7};
+        for (int i = 0; i < ints.length; i++) {
+            printer.print(3423);
+            printer.print(ints[i]);
+            printer.print(1);
+            printer.println();
+        }
+        printer.close();
+    }
+
     public static void main(String[]args){
 
         try {
             parseCSV();
+//            processForUser();
         } catch (IOException e) {
             e.printStackTrace();
         }
