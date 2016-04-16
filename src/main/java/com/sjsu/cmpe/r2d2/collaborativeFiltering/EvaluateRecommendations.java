@@ -71,15 +71,16 @@ public class EvaluateRecommendations {
             RecommenderEvaluator evaluator = new RMSRecommenderEvaluator();
             RecommenderBuilder recommenderBuilder = new ItemRecommenderBuilder();
 
-            // evaluate RMSE for 500
-            for(int i = 0;i<500;i++){
+            // evaluate RMSE for 1000
+            int n = 1000;
+            for(int i = 0;i<n;i++){
                 try {
                     sum+=evaluator.evaluate(recommenderBuilder,null,dataModel,0.9,1);
                 } catch (TasteException e) {
                     e.printStackTrace();
                 }
             }
-            System.out.println(" RMSE :" + sum/500);
+            System.out.println(" RMSE :" + sum/n);
         } else if(typeOfRecommendation.equalsIgnoreCase("matrix")){
             SparkConf spark_conf = new SparkConf().setAppName("Matrix Factor Evaluation").setMaster("local[2]");
             JavaSparkContext java_spark_cont = new JavaSparkContext(spark_conf);
